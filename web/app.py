@@ -4,8 +4,14 @@ import json
 
 from src.spam_classifier.pipeline import load_pipeline, train_and_save_pipeline, predict_texts
 
-st.set_page_config(page_title="Spam SMS Demo", layout="centered")
-st.title("Spam SMS Classifier — Demo")
+st.set_page_config(page_title="2025 Spam Email Demo", layout="centered")
+st.title("2025 Spam Email Classification Demo")
+
+st.markdown("""
+This demo shows a simple spam classifier trained on SMS messages. You can:
+1. Enter a single message to classify
+2. Upload a CSV file with multiple messages
+""")
 
 # Ensure model exists
 model = load_pipeline()
@@ -56,4 +62,10 @@ if show_metrics:
         st.info("No metrics file found yet. Run training to generate metrics.")
 
 st.markdown("---")
-st.markdown("Built with scikit-learn and Streamlit — model retrains automatically if not found.")
+st.markdown("""
+---
+### About
+- Built with scikit-learn and Streamlit
+- Model retrains automatically if not found
+- View the [source code](https://github.com/Hsu-chiao-lin/spam-email-classifier)
+""")
