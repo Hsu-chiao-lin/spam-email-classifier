@@ -1,0 +1,23 @@
+{
+    "name": "openspec-demo",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Demo project using OpenSpec for proposal management and ML experiments",
+    "scripts": {
+        "spec:lint": "python scripts/spec_lint.py",
+        "test": "pytest",
+        "lint": "eslint . && black . --check",
+        "format": "eslint . --fix && black ."
+    },
+    "dependencies": {
+        "@fission-ai/openspec": "latest"
+    },
+    "devDependencies": {
+        "eslint": "^8.0.0",
+        "prettier": "^2.0.0"
+    },
+    "engines": {
+        "node": ">=16",
+        "python": ">=3.8"
+    }
+}
