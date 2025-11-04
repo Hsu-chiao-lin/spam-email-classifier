@@ -4,7 +4,7 @@ A spam classification demo using scikit-learn and Streamlit, featuring both sing
 
 ## Live Demo
 
-Visit the live demo at: [2025 Spam Email Demo](https://2025spamemail.streamlit.app/)
+Visit the live demo at: [2025 Spam Email Demo](https://spam-email-classifier-kmksfazlarrgyuigdggzzf.streamlit.app/)
 
 ## Features
 
