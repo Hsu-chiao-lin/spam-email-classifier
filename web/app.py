@@ -65,8 +65,10 @@ def top_positive_tokens(pipe, n: int = 15) -> List[Tuple[str, float]]:
         return []
 
 
-# Ensure / load model once and cache it
-model = get_or_train_pipeline()
+# Do not load/train the model at import time on startup.
+# get_or_train_pipeline() is called lazily by prediction helpers so the
+# app can start even if training data or models are not yet available.
+model = None
 
 
 st.sidebar.header("Demo options")
