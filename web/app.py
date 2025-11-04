@@ -93,11 +93,23 @@ with col1:
         if not text.strip():
             st.warning("Please enter some text to classify.")
         else:
+            # guard very long inputs to avoid huge TF-IDF overhead
+            if len(text) > 2000:
+                st.warning("Input is very long; truncating to 2000 characters for performance.")
+                text = text[:2000]
+
             with st.spinner("Classifying..."):
                 preds, probs = safe_predict([text])
             label = "SPAM" if preds[0] == 1 else "HAM"
             st.metric("Prediction", label)
             st.write(f"Spam probability: **{probs[0]:.3f}**")
+
+            # probability visual
+            try:
+                prog = int(max(0, min(100, round(probs[0] * 100))))
+                st.progress(prog)
+            except Exception:
+                pass
 
             # show top tokens if available
             tokens = top_positive_tokens(model, n=10)
@@ -106,6 +118,17 @@ with col1:
                 st.write(
                     ", ".join([f"{t} ({w:.2f})" for t, w in tokens[:10]])
                 )
+
+            # model info (if present)
+            try:
+                model_path = Path(__file__).parent.parent / "models" / "phase1" / "pipeline.joblib"
+                if model_path.exists():
+                    st.caption(f"Model: {model_path.name} — last modified: {model_path.stat().st_mtime}")
+            except Exception:
+                pass
+
+    if st.button("Clear input"):
+        st.session_state["input_text"] = ""
 
 with col2:
     st.subheader("Batch upload")
@@ -131,6 +154,16 @@ with col2:
                 st.dataframe(df.head(50))
                 csv_bytes = df.to_csv(index=False).encode("utf-8")
                 st.download_button("Download predictions CSV", csv_bytes, file_name="predictions.csv")
+
+    # provide an example CSV for users to download and try locally
+    example_df = pd.DataFrame({
+        "text": [
+            "Congratulations! You've won a free ticket. Call now.",
+            "Are we meeting for coffee tomorrow?",
+            "URGENT: Your account has been compromised. Reply with your password.",
+        ]
+    })
+    st.download_button("Download example CSV", example_df.to_csv(index=False).encode("utf-8"), file_name="example_messages.csv")
 
 
 if show_metrics:
