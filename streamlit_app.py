@@ -16,6 +16,14 @@ import importlib
 
 # Ensure repository root is on sys.path so local packages are preferred.
 repo_root = Path(__file__).parent
+src_path = repo_root / "src"
+
+# Prepend src_path first so the real implementation under src/ is preferred
+# over any top-level compatibility shims or third-party packages.
+if src_path.exists() and str(src_path) not in sys.path:
+	sys.path.insert(0, str(src_path))
+
+# Ensure repository root is also present (for web/ and other modules).
 if str(repo_root) not in sys.path:
 	sys.path.insert(0, str(repo_root))
 
