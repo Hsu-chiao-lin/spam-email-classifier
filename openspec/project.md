@@ -8,11 +8,11 @@ This repository demonstrates using OpenSpec to manage change proposals and an ag
 
 ## Maintainers
 
-- Name: <your name here>
-- Email: <your email here>
-- GitHub: <your-gh-handle>
+- Name: Hsu-chiao-lin
+- Email: <fill-in>
+- GitHub: Hsu-chiao-lin
 
-Please replace the placeholders above with the project owners/maintainers.
+Replace the email placeholder above with the preferred contact address.
 
 ## Tech stack
 

@@ -25,7 +25,12 @@ Notes:
 ```powershell
 python -m pip install -r requirements.txt
 python scripts/fetch_data.py
-streamlit run web/app.py
+
+# Recommended (Cloud entrypoint)
+streamlit run streamlit_app.py
+
+# Alternate
+# streamlit run web/app.py
 ```
 
 ## Advanced

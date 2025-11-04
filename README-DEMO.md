@@ -7,8 +7,11 @@ Quick start (Windows PowerShell):
 ```powershell
 python -m pip install -r requirements.txt
 python scripts/fetch_data.py
-# Run the Streamlit app
-streamlit run web/app.py
+# Run the Streamlit app (Cloud-friendly entrypoint)
+streamlit run streamlit_app.py
+
+# Optional: run the module-based app instead
+# streamlit run web/app.py
 ```
 
 Notes:
